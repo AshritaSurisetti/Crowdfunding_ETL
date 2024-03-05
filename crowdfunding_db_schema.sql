@@ -1,0 +1,47 @@
+-- Creating contacts table 
+CREATE TABLE contacts(
+	contact_id INT NOT NULL,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	PRIMARY KEY(contact_id)
+);
+
+--creating category table
+CREATE TABLE category(
+	category_id VARCHAR(5) PRIMARY KEY NOT NULL,
+	category VARCHAR(30) NOT NULL
+);
+
+-- Creating subcategory table
+CREATE TABLE subcategory(
+	subcategory_id VARCHAR(8) PRIMARY KEY NOT NULL,
+	subcategory VARCHAR(50) NOT NULL
+);
+
+-- Creating campaign table
+CREATE TABLE campaign(
+	cf_id INT NOT NULL,
+	contact_id INT NOT NULL,
+	company_name VARCHAR(150) NOT NULL,
+	description VARCHAR(300) NOT NULL,
+	goal FLOAT NOT NULL,
+	pledged FLOAT NOT NULL,
+	outcome VARCHAR(15) NOT NULL,
+	backers_count INT NOT NULL,
+	country VARCHAR(50) NOT NULL,
+	currency VARCHAR(50) NOT NULL,
+	launched_date DATE NOT NULL,
+	end_date DATE NOT NULL,
+	category_id VARCHAR(5) NOT NULL,
+	subcategory_id VARCHAR(8) NOT NULL,
+		PRIMARY KEY(cf_id),
+		FOREIGN KEY(contact_id) REFERENCES contacts(contact_id),
+		FOREIGN KEY(category_id) REFERENCES category(category_id),
+		FOREIGN KEY(subcategory_id) REFERENCES subcategory(subcategory_id)
+);
+
+SELECT * FROM contacts
+SELECT * FROM category
+SELECT * FROM subcategory
+SELECT * FROM campaign
